@@ -4,9 +4,9 @@
 import os
 
 
-def clean():
+def clean(og_names):
     # os.chdir('/home/mahalo/Downloads/VideoDownloader')
-    og_names =(os.listdir())
+    # og_names =(os.listdir())
 
     for n in og_names:
         file_name, extension = os.path.splitext(n)
@@ -38,6 +38,6 @@ def clean():
     print("All Done")
     return
 
-for dirpath,subdirs,files in os.walk('/home/mahalo/Downloads/VideoDownloader'):
+for dirpath,subdirs,files in os.walk('/media/Toxic/music'):
     os.chdir(dirpath)
-    clean()
+    clean(files)
