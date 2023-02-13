@@ -35,13 +35,13 @@ cp -r -u ~/PycharmProjects /media/2tb/backup
 ;;
     
     -s)
-        sudo rsync --progress -aAX --delete --exclude={/media/toxic/ISO/*} /media/toxic /media/2tb/backup
-        sudo rsync --progress -aAX --delete ~/Nextcloud /media/2tb/backup 
-        sudo rsync --progress -aAX --delete ~/PycharmProjects /media/2tb/backup 
-        sudo rsync --progress -aAX --delete ~/scripts /media/2tb/backup 
-        sudo rsync --progress -aAX --delete ~/stuff /media/2tb/backup 
-        sudo rsync --progress -aAX --delete ~/programs /media/2tb/backup 
-        sudo rsync --progress -aAX --delete ~/linux-comands.txt /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete --exclude={/media/toxic/ISO/*} /media/toxic /media/2tb/backup
+        sudo rsync --info=progress2 -aA --delete ~/Nextcloud /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete ~/PycharmProjects /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete ~/scripts /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete ~/stuff /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete ~/programs /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete ~/linux-comands.txt /media/2tb/backup 
 
 
         ;;
