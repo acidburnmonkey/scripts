@@ -2,11 +2,11 @@
 
 #apps deleted 
 if command -v dnf &> /dev/null; then
-  sudo dnf -v remove hexchat transmission hypnotix rhythmbox warpinator xfburn pidgin xawtv   
+  sudo dnf -v remove hexchat transmission hypnotix rhythmbox warpinator xfburn pidgin xawtv dosbox-staging
 fi
 
 if  command -v apt &> /dev/null; then
-  sudo apt purge -v remove hexchat transmission hypnotix rhythmbox warpinator xfburn pidgin xawtv   
+  sudo apt purge -v remove hexchat transmission hypnotix rhythmbox warpinator xfburn pidgin xawtv dosbox-staging
 fi
 
 

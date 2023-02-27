@@ -35,7 +35,7 @@ cp -r -u ~/PycharmProjects /media/2tb/backup
 ;;
     
     -s)
-        sudo rsync --info=progress2 -aA --delete --exclude={/media/toxic/ISO/*} /media/toxic /media/2tb/backup
+        sudo rsync --info=progress2 -aA --delete --exclude 'ISO' /media/toxic /media/2tb/backup
         sudo rsync --info=progress2 -aA --delete ~/Nextcloud /media/2tb/backup 
         sudo rsync --info=progress2 -aA --delete ~/PycharmProjects /media/2tb/backup 
         sudo rsync --info=progress2 -aA --delete ~/scripts /media/2tb/backup 
