@@ -38,6 +38,7 @@ with open('data.txt','w+') as output:
 
 #apending flatpak
 with open('data.txt','a') as output:
+    output.write('####### Flatpak #########')
     output.write(flat.stdout)
 
 #opens the final file 
