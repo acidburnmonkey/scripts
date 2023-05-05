@@ -18,6 +18,8 @@ cp -r -u -v ~/.config/nvim ~/repos/dotfiles
 cp -r -u -v ~/.config/i3 ~/repos/dotfiles/i3/desktop/
 #polybar
 cp -r -u -v ~/.config/polybar ~/repos/dotfiles/polybar/desktop/
+#picom
+cp -r -u -v ~/.config/picom.conf ~/repos/dotfiles/picom.conf
 
 
 
