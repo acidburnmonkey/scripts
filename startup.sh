@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 2 
+sleep 5 
 pkill openrgb
 
 #poltit

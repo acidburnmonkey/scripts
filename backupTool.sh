@@ -6,6 +6,8 @@
 sudo mount /dev/sdc1 /media/2tb
 sleep 2
 
+destination=/media/2tb/backup
+
 case $1 in
     #old script
     -o) 
@@ -28,26 +30,26 @@ cp -r -u /media/toxic/video\ projects /media/2tb/backup
 cp -r -u /media/toxic/photos /media/2tb/backup
 
 # Home backups
-cp -r -u ~/scripts /media/2tb/backup
-cp -r -u linux-comands.txt /media/2tb/backup
-cp -r -u ~/PycharmProjects /media/2tb/backup
+cp -r -u ~/scripts $destination
+cp -r -u linux-comands.txt $destination
+cp -r -u ~/PycharmProjects $destination
 
 ;;
     
     -s)
-        sudo rsync --info=progress2 -aA --delete --exclude 'ISO' /media/toxic /media/2tb/backup
-        sudo rsync --info=progress2 -aA --delete ~/Nextcloud /media/2tb/backup 
-        sudo rsync --info=progress2 -aA --delete ~/python /media/2tb/backup 
-        sudo rsync --info=progress2 -aA --delete ~/scripts /media/2tb/backup 
-        sudo rsync --info=progress2 -aA --delete ~/stuff /media/2tb/backup 
-        sudo rsync --info=progress2 -aA --delete ~/programs /media/2tb/backup 
-        sudo rsync --info=progress2 -aA --delete ~/linux-comands.txt /media/2tb/backup 
+        sudo rsync --info=progress2 -aA --delete --exclude 'ISO' /media/toxic $destination
+        sudo rsync --info=progress2 -aA --delete ~/Nextcloud $destination 
+        sudo rsync --info=progress2 -aA --delete ~/python $destination 
+        sudo rsync --info=progress2 -aA --delete ~/scripts $destination 
+        sudo rsync --info=progress2 -aA --delete ~/stuff $destination 
+        sudo rsync --info=progress2 -aA --delete ~/programs $destination 
+        sudo rsync --info=progress2 -aA --delete ~/linux-comands.txt $destination 
 
 
         ;;
         
     *)
-        echo "No option selected -s or -o"
+        echo "No option selected -s (sync) or -o (old)"
         ;;  
  esac
 
