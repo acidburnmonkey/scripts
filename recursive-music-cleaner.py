@@ -38,6 +38,6 @@ def clean(og_names):
     print("All Done")
     return
 
-for dirpath,subdirs,files in os.walk('mtp://SAMSUNG_SAMSUNG_Android_R5CR6198ZTV/Internal%20storage/Music'):
+for dirpath,subdirs,files in os.walk('/home/mahalo/Downloads/VideoDownloader'):
     os.chdir(dirpath)
     clean(files)
