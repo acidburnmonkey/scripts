@@ -11,11 +11,11 @@ case $1 in
     -o) 
 
     ## add more folders here -u== no overwrite duplicates ##
-
-        # Home backups
-        cp -r -u ~/scripts $destination
-        cp -r -u linux-comands.txt $destination
-        cp -r -u ~/PycharmProjects $destination
+        echo "Deprecated option use -s"
+         # Home backups
+        # cp -r -u ~/scripts $destination
+        # cp -r -u linux-comands.txt $destination
+        # cp -r -u ~/PycharmProjects $destination
 
 ;;
     
