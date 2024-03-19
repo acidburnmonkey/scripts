@@ -104,29 +104,22 @@ zsh
 ####### Flatpak #########
 Adobe Flash Player
 Axosoft
-8bit Solutions LLC
 Brave Software
 Discord Inc.
 WhatsApp for Linux
 Jellyfin Media Player
-Drawing
 Czkawka
 Flatseal
 Unrud
 Heroic Games Launcher
 CLion
-Microsoft Corporation
 Spotify
-Microsoft Corporation
 Metadata Cleaner
 Amberol
-Hanna Knutsson
 jExifToolGUI
 Obsidian
 ProtonUp-Qt
 GNU Image Manipulation Program
-Meltytech, LLC
-John Preston
 yuzu Emulator Team
 zoom.us
 CoBang
