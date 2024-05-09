@@ -8,7 +8,7 @@ dir = os.getcwd()
 # gets list of installed programs from dnf 
 subprocess.run('dnf repoquery --userinstalled > manully_dnf.txt', shell=True)
 #from flatpak
-flat =subprocess.run('flatpak list --app | cut -f 1', shell=True, capture_output=True,text=True)
+flat =subprocess.run('flatpak list --app | cut -f 2', shell=True, capture_output=True,text=True)
 
 
 # (.*?)-\d+
