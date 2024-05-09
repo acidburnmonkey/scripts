@@ -1,0 +1,10 @@
+[Unit]
+Description=My custom startup script
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env bash /scripts/startup_sc.sh
+
+[Install]
+WantedBy=multi-user.target
