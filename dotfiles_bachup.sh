@@ -16,6 +16,7 @@ cp -r -u -v ~/.config/neofetch $dotfiles
 # Nvim
 cp -r -u -v ~/.config/nvim $dotfiles
 
+cp -r -u -v ~/.vimrc $dotfiles
 
 #desktop ---------
 #i3 
