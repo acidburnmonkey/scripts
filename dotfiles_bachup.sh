@@ -2,23 +2,31 @@
 
 dotfiles="$HOME/repos/dotfiles/"
 
+list=(
 #zhrc
-cp -r -u -v ~/.zshrc  $dotfiles
+" $HOME/.zshrc"
 #.p10k.zh
-cp -r -u -v ~/.p10k.zsh $dotfiles
-
+" $HOME/.p10k.zsh"
 #kitty
-cp -r -u -v ~/.config/kitty $dotfiles
+"$HOME/.config/kitty "
 #ulauncher
-cp -r -u -v ~/.config/ulauncher $dotfiles
+"$HOME/.config/ulauncher"
 #neofetch
-cp -r -u -v ~/.config/neofetch $dotfiles
+"$HOME/.config/neofetch"
 # Nvim
-cp -r -u -v ~/.config/nvim $dotfiles
+"$HOME/.config/nvim "
 # mpv
-cp -r -u -v ~/.config/mpv/ $dotfiles
+"$HOME/.config/mpv/"
+#vimrc
+"$HOME/.vimrc"
+)
 
-cp -r -u -v ~/.vimrc $dotfiles
+
+
+for source in "${list[@]}"; do
+    cp -r -u -v $source $dotfiles
+done
+
 
 #desktop ---------
 #i3 
@@ -27,6 +35,25 @@ cp -r -u -v ~/.config/i3 ~/repos/dotfiles/desktop/
 cp -r -u -v ~/.config/polybar ~/repos/dotfiles/desktop/
 #picom
 cp -r -u -v ~/.config/picom.conf ~/repos/dotfiles/picom.conf
+
+
+##zhrc
+#cp -r -u -v ~/.zshrc  $dotfiles
+##.p10k.zh
+#cp -r -u -v ~/.p10k.zsh $dotfiles
+##kitty
+#cp -r -u -v ~/.config/kitty $dotfiles
+##ulauncher
+#cp -r -u -v ~/.config/ulauncher $dotfiles
+##neofetch
+#cp -r -u -v ~/.config/neofetch $dotfiles
+## Nvim
+#cp -r -u -v ~/.config/nvim $dotfiles
+## mpv
+#cp -r -u -v ~/.config/mpv/ $dotfiles
+
+#cp -r -u -v ~/.vimrc $dotfiles
+
 
 
 
