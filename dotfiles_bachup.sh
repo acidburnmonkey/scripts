@@ -15,6 +15,8 @@ cp -r -u -v ~/.config/ulauncher $dotfiles
 cp -r -u -v ~/.config/neofetch $dotfiles
 # Nvim
 cp -r -u -v ~/.config/nvim $dotfiles
+# mpv
+cp -r -u -v ~/.config/mpv/ $dotfiles
 
 cp -r -u -v ~/.vimrc $dotfiles
 
