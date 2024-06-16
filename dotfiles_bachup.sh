@@ -21,12 +21,12 @@ list=(
 "$HOME/.vimrc"
 )
 
-
-
+# directories on ~/.config
 for source in "${list[@]}"; do
     cp -r -u -v $source $dotfiles
 done
 
+cp -r -u -v ~/scripts/data.txt "$dotfiles"
 
 #desktop ---------
 #i3 
