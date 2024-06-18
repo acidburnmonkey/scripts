@@ -26,6 +26,7 @@ for source in "${list[@]}"; do
     cp -r -u -v $source $dotfiles
 done
 
+## data.txt
 cp -r -u -v ~/scripts/data.txt "$dotfiles"
 
 #desktop ---------
