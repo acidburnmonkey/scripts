@@ -19,6 +19,16 @@ list=(
 "$HOME/.config/mpv/"
 #vimrc
 "$HOME/.vimrc"
+#hyprland
+"$HOME/.config/hypr/"
+#systemd user
+"$HOME/.config/systemd/"
+#waybar
+"$HOME/.config/waybar/"
+# dunst
+"$HOME/.config/dunst/"
+# Ranger
+"$HOME/.config/ranger/"
 )
 
 # directories on ~/.config

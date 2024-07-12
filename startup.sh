@@ -1,9 +1,12 @@
 #!/bin/bash
 
+
+# exec nohup waypaper --restore &
+
 sleep 5 
 pkill openrgb
 
-#poltit
+##poltit
 exec nohup /usr/libexec/polkit-gnome-authentication-agent-1 &
 
 #map caps to esc
