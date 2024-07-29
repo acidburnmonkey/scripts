@@ -20,7 +20,7 @@ case $1 in
 ;;
     
     -s)
-         rsync --info=progress2 -aA --delete  --exclude={'Cemu','iso'} /media/Toxic $destination2
+         rsync --info=progress2 -aA --delete  --exclude={'Cemu','iso','video projects'} /media/Toxic $destination2
          rsync --info=progress2 -aA --delete  --exclude={'.*','Desktop','Downloads','Documents','boxshare','repos'} ~/ $destination 
 
          # rsync --info=progress2 -aA --delete -e $getkey ~/Nextcloud $destination 

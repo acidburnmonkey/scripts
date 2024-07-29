@@ -39,14 +39,6 @@ done
 ## data.txt
 cp -r -u -v ~/scripts/data.txt "$dotfiles"
 
-#desktop ---------
-#i3 
-cp -r -u -v ~/.config/i3 ~/repos/dotfiles/desktop/
-#polybar
-cp -r -u -v ~/.config/polybar ~/repos/dotfiles/desktop/
-#picom
-cp -r -u -v ~/.config/picom.conf ~/repos/dotfiles/picom.conf
-
 
 ##zhrc
 #cp -r -u -v ~/.zshrc  $dotfiles
