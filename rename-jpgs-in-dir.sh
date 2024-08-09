@@ -2,14 +2,29 @@
 
 #This program will rename all images in a directory from 1-200 + letter from a-z
 
-counter=1
-dir="/media/toxic/photos/random/"
-
+dir="$HOME/photos/random/"
 echo "Working on $dir"
+
+# Function to check if a filename is numeric
+is_numeric() {
+  if [[ $1 =~ ^[0-9]+$ ]]; then
+    return 0  # True
+  else
+    return 1  # False
+  fi
+}
+
+counter=1
 
 for file in "$dir"/*.jpg "$dir"/*.webp "$dir"/*.gif "$dir"/*.png "$dir"/*.jpeg; do
    if [ -f "$file" ]; then
+        filename=$(basename "$file")
         extension="${file##*.}"
+        
+        if is_numeric "${filename%.*}"; then
+            continue
+        fi
+
         new_name="${counter}.${extension}"
 
         if [ -n "$new_name" ]; then

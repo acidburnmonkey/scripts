@@ -1,6 +1,8 @@
 #!/bin/bash
 
-dir="/media/toxic/photos/poster"
+echo "Enter path to run"
+read -r dir
+echo "Working on $dir"
 
 # Convert webp to png
 for x in "$dir"/*.webp; do
