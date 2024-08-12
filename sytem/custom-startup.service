@@ -1,5 +1,5 @@
 [Unit]
-Description=My custom startup script
+Description=This if for descrpting xeno drive
 After=multi-user.target
 
 [Service]
