@@ -29,6 +29,8 @@ list=(
 "$HOME/.config/dunst/"
 # Ranger
 "$HOME/.config/ranger/"
+# Rofi
+"$HOME/.config/rofi/"
 )
 
 # directories on ~/.config
@@ -38,26 +40,6 @@ done
 
 ## data.txt
 cp -r -u -v ~/scripts/data.txt "$dotfiles"
-
-
-##zhrc
-#cp -r -u -v ~/.zshrc  $dotfiles
-##.p10k.zh
-#cp -r -u -v ~/.p10k.zsh $dotfiles
-##kitty
-#cp -r -u -v ~/.config/kitty $dotfiles
-##ulauncher
-#cp -r -u -v ~/.config/ulauncher $dotfiles
-##neofetch
-#cp -r -u -v ~/.config/neofetch $dotfiles
-## Nvim
-#cp -r -u -v ~/.config/nvim $dotfiles
-## mpv
-#cp -r -u -v ~/.config/mpv/ $dotfiles
-
-#cp -r -u -v ~/.vimrc $dotfiles
-
-
 
 
 echo "All Done"
