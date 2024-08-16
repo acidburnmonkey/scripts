@@ -31,6 +31,8 @@ list=(
 "$HOME/.config/ranger/"
 # Rofi
 "$HOME/.config/rofi/"
+# GTK
+"$HOME/.config/gtk*"
 )
 
 # directories on ~/.config
