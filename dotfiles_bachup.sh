@@ -38,15 +38,16 @@ case "$1" in
         cp -r -u -v  "$HOME/.config/hypr/" "$dotfiles/Laptop-configs/"
         cp -r -u -v  "$HOME/.config/waybar/" "$dotfiles/Laptop-configs/"
 
-        ;;
+    ;;
 
     --retrive)
 
         echo "retriving configs"
-        rsync --info=progress2 -aAv --exclude={'hypr','waybar','Laptop-configs','i3','picom','polybar'} "$dotfiles" "$HOME/.config/"
+        rsync --info=progress2 -aAv --exclude={'hypr','waybar','Laptop-configs','retired'} "$dotfiles" "$HOME/.config/"
         cp -r -u -v "$dotfiles/Laptop-configs/*" "$HOME/.config/"
 
-        ;;
+    ;;
+    
     *) 
     echo "Chose an option --desktop --laptop --retrive"
 
