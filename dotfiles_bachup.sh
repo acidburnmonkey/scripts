@@ -6,7 +6,6 @@ list=(
     "$HOME/.zshrc"            # zsh config
     "$HOME/.p10k.zsh"         # powerlevel10k config
     "$HOME/.config/kitty"     # kitty terminal config
-    "$HOME/.config/ulauncher" # ulauncher config
     "$HOME/.config/neofetch"  # neofetch config
     "$HOME/.config/nvim"      # Neovim config
     "$HOME/.config/mpv/"      # mpv config
