@@ -38,6 +38,6 @@ def clean(og_names):
     print("All Done")
     return
 
-for dirpath,subdirs,files in os.walk('/home/mahalo/Downloads/VideoDownloader'):
+for dirpath,subdirs,files in os.walk('/home/mahalo/Downloads/Sabaton - 2022 - The War to End All Wars (24bit-48kHz)/'):
     os.chdir(dirpath)
     clean(files)
