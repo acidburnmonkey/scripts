@@ -17,6 +17,9 @@ list=(
     "$HOME/.config/ranger/"   # Ranger config
     "$HOME/.config/rofi/"     # Rofi config
     "$HOME/.config/gtk*"      # GTK configs
+    "$HOME/.config/fastfetch/" # fastfetch 
+    "$HOME/.config/tmux/" # fastfetch 
+    "$HOME/.config/sublime-text/" # fastfetch 
 )
 
 case "$1" in 
