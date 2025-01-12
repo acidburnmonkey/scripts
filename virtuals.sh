@@ -9,9 +9,19 @@ dir_list=("$hev"*/)
 # Pass the array to fzf for selection
 selected=$(printf "%s\n" "${dir_list[@]}" | fzf)
 
-# Print the selected directory
-echo "You selected: $selected"
+if [[ -n $selected ]]; then
 
-# Remove the trailing slash and activate the selected environment
-selected_venv="${selected%/}"
-source "$selected_venv/bin/activate"
+    # Print the selected directory
+    echo "You selected: $selected"
+
+    # Remove the trailing slash and activate the selected environment
+    selected_venv="${selected%/}"
+    source "$selected_venv/bin/activate"
+    
+
+    dir_name=$(basename "$selected_venv")
+    tmux new -s "$dir_name"
+
+else
+    echo "You selected None"
+fi
