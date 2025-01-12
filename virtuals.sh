@@ -16,11 +16,9 @@ if [[ -n $selected ]]; then
 
     # Remove the trailing slash and activate the selected environment
     selected_venv="${selected%/}"
-    source "$selected_venv/bin/activate"
-    
 
     dir_name=$(basename "$selected_venv")
-    tmux new -s "$dir_name"
+    tmux new -s "$dir_name" zsh -c "source '$selected_venv/bin/activate'; exec zsh"
 
 else
     echo "You selected None"
