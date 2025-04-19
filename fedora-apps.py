@@ -42,6 +42,54 @@ with open('data.txt','w+') as output:
 with open('data.txt','a') as output:
     output.write('####### Flatpak #########\n')
     output.write(flat.stdout)
+    output.write('\n')
+
+
+# Repolist
+
+
+path =os.listdir('/etc/yum.repos.d/')
+repos =[]
+repolist = set()
+for file in path:
+    if 'fedora' not in file.lower() and 'copr' not in file.lower() and 'rpmfusion' not in file.lower():
+        repos.append(file)
+
+for f in repos:
+    with open('/etc/yum.repos.d/'+f, 'r') as file:
+        for line in file:
+            line.strip()
+            if line.startswith('baseurl='):
+                cut =line.find('=') +1
+                end = line.find('$')
+                line = (line[cut:end])
+                if not line.endswith('/'):
+                    line = line +'/'
+                if line not in repolist:
+                 repolist.add(line + f)
+
+
+#apending extra repos
+with open('data.txt','a') as output:
+    output.write('[Repolist]\n')
+    for x in repolist:
+        output.write(x + '\n')
+    output.write('\n')
+
+coprlist = subprocess.run(['dnf','copr','list'], capture_output=True,text=True).stdout.splitlines()
+copr = [c.removeprefix('copr.fedorainfracloud.org/') for c in coprlist]
+
+# append copr
+with open('data.txt','a') as output:
+    output.write('[Copr]\n')
+    for x in copr:
+        output.write(x+ '\n')
+
+
+
+
+
+
 
 #opens the final file 
 with open('data.txt','r') as o:
