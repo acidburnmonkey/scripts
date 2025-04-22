@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# absulute path of directory
+# absolute path of directory
 script_dir=$HOME/repos/icons/
 
 icons=$script_dir/candy-icons

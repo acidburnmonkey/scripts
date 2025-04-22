@@ -35,12 +35,13 @@ for programs in list_f:
         formated_list.append(programs)
 
 with open('data.txt','w+') as output:
+    output.write('[Programs] \n')
     for i in formated_list:
         output.write(i + '\n')
 
-#apending flatpak
+#appending flatpak
 with open('data.txt','a') as output:
-    output.write('####### Flatpak #########\n')
+    output.write('[Flatpak] \n')
     output.write(flat.stdout)
     output.write('\n')
 
@@ -69,7 +70,7 @@ for f in repos:
                  repolist.add(line + f)
 
 
-#apending extra repos
+#appending extra repos
 with open('data.txt','a') as output:
     output.write('[Repolist]\n')
     for x in repolist:
@@ -84,12 +85,6 @@ with open('data.txt','a') as output:
     output.write('[Copr]\n')
     for x in copr:
         output.write(x+ '\n')
-
-
-
-
-
-
 
 #opens the final file 
 with open('data.txt','r') as o:

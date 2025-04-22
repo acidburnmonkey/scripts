@@ -44,7 +44,7 @@ case "$1" in
 
     --retrive)
 
-        echo "retriving configs"
+        echo "retrieving configs"
         rsync --info=progress2 -aAv --exclude={'hypr','waybar','Laptop-configs','retired', '.git' } "$dotfiles" "$HOME/.config/"
         cp -r -u -v "$dotfiles/Laptop-configs/*" "$HOME/.config/"
 

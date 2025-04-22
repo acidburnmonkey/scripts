@@ -12,23 +12,23 @@ for n in og_names:
     if "(" in  str(file_name):
         start_of_segment=(file_name.index('('))
         
-        formated= file_name[0:start_of_segment]
-        final_format=(formated + extension) 
+        formatted= file_name[0:start_of_segment]
+        final_format=(formatted + extension) 
         os.rename(n, final_format)     
 
     elif "[" in  str(file_name): 
         start_of_segment=(file_name.index('['))
 
-        formated= file_name[0:start_of_segment]
-        final_format=(formated + extension) 
+        formatted= file_name[0:start_of_segment]
+        final_format=(formatted + extension) 
         os.rename(n, final_format)     
 
 
     elif "{" in  str(file_name): 
         start_of_segment=(file_name.index('{'))
 
-        formated= file_name[0:start_of_segment]
-        final_format=(formated + extension) 
+        formatted= file_name[0:start_of_segment]
+        final_format=(formatted + extension) 
         os.rename(n, final_format)     
 
 print("Working on" , os.getcwd())
