@@ -1,25 +1,56 @@
 #!/bin/bash
 
-# Define the base directory
-hev="$HOME/virtual/Envs/"
+# --- Configuration ---
+# Virtualenv base
+venv_base="$HOME/virtual/Envs"
 
-# Collect all directories into an array
-dir_list=("$hev"*/)
+# Projects map
+declare -A projects
+projects=(
+  ["currentProject"]="$HOME/java_sc/current"
+  ["sideQuest"]="$HOME/java_sc/side"
+  ["blogSite"]="$HOME/java_sc/blog"
+)
 
-# Pass the array to fzf for selection
-selected=$(printf "%s\n" "${dir_list[@]}" | fzf)
+# --- Build Selection List ---
+choices=()
 
-if [[ -n $selected ]]; then
+# Add projects
+for name in "${!projects[@]}"; do
+  choices+=("project: $name")
+done
 
-    # Print the selected directory
-    echo "You selected: $selected"
+# Add virtualenvs
+for v in "$venv_base"/*; do
+  [[ -d $v ]] && choices+=("venv: $(basename "$v")")
+done
 
-    # Remove the trailing slash and activate the selected environment
-    selected_venv="${selected%/}"
+# --- User selection via fzf ---
+selected=$(printf "%s\n" "${choices[@]}" | fzf --prompt="Launch: ")
 
-    dir_name=$(basename "$selected_venv")
-    tmux new -s "$dir_name" zsh -c "source '$selected_venv/bin/activate'; exec zsh"
+if [[ -z $selected ]]; then
+  echo "Nothing selected."
+  exit 0
+fi
+
+type="${selected%%:*}"
+name="${selected#*: }"
+
+# --- Handle Selection ---
+
+#open webdeb
+if [[ $type == "project" ]]; then
+  path="${projects[$name]}"
+  tmux new -s "$name" zsh -c "cd '$path'; exec zsh"
+  chromium-browser "http://localhost:5173/" & disown
+  # firefox "$path" & disown
+
+#python env selections
+elif [[ $type == "venv" ]]; then
+  venv_path="$venv_base/$name"
+  tmux new -s "$name" zsh -c "source '$venv_path/bin/activate'; exec zsh"
 
 else
-    echo "You selected None"
+  echo "Invalid selection."
 fi
+

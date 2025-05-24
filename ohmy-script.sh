@@ -1,4 +1,8 @@
-!#/bin/sh
+#!/bin/bash
+
+# Basic setup for vms
+
+sudo packageManager install zsh nvim ranger
 
 
 #installs oh my zsh
@@ -9,7 +13,37 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 #powerlevel 10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# # microsoft fonts fedora
+# sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 
-# microsoft fonts fedora
-sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+# Write .zshrc conf
+cat > "$HOME/.zshrc" << 'EOF'
 
+export ZSH="$HOME/.oh-my-zsh"
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+alias vim='nvim'
+alias cl='clear'
+alias src='source ~/.zshrc'
+
+## Plugins ###
+plugins=(git zsh-autosuggestions)
+
+function cd {
+    builtin cd "$@" && ls -F
+}
+
+function .. {
+    builtin cd .. "$@" && ls -F
+}
+
+source $ZSH/oh-my-zsh.sh
+
+EOF
+
+
+#Remap caps lock
+setxkbmap -option caps:swapescape

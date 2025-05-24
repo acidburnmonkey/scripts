@@ -17,12 +17,13 @@ list=(
     "$HOME/.config/ranger/"   # Ranger config
     "$HOME/.config/rofi/"     # Rofi config
     "$HOME/.config/gtk*"      # GTK configs
-    "$HOME/.config/fastfetch/" # fastfetch 
-    "$HOME/.config/tmux/" # fastfetch 
-    "$HOME/.config/sublime-text/" # fastfetch 
+    "$HOME/.config/fastfetch/" # fastfetch
+    "$HOME/.config/tmux/"    #tmux
+    "$HOME/.config/sublime-text/" #sublime-text
+    "$HOME/.config/wezterm/" # wezterm
 )
 
-case "$1" in 
+case "$1" in
 
     --desktop)
         # directories on ~/.config
@@ -49,10 +50,10 @@ case "$1" in
         cp -r -u -v "$dotfiles/Laptop-configs/*" "$HOME/.config/"
 
     ;;
-    
-    *) 
+
+    *)
     echo "Chose an option --desktop --laptop --retrive"
 
 esac
-    
+
 echo "All Done"
