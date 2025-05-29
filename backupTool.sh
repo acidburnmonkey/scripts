@@ -8,7 +8,7 @@ destination2=mal0@192.168.1.146:/mnt/2tb/windows_backup
 
 case $1 in
     #old script
-    -o) 
+    -o)
 
     ## add more folders here -u== no overwrite duplicates ##
         echo "Deprecated option use -s"
@@ -18,25 +18,25 @@ case $1 in
         # cp -r -u ~/PycharmProjects $destination
 
 ;;
-    
+
     -s)
          rsync --info=progress2 -aA --delete  --exclude={'Cemu','iso','video projects'} /media/Toxic $destination2
-         rsync --info=progress2 -aA --delete  --exclude={'.*','Desktop','Downloads','Documents','boxshare','repos','tor'} ~/ $destination 
+         rsync --info=progress2 -aA --delete  --exclude={'.*','Desktop','Downloads','Documents','boxshare','repos','tor','40'} ~/ $destination
 
-         # rsync --info=progress2 -aA --delete -e $getkey ~/Nextcloud $destination 
-         # rsync --info=progress2 -aA --delete -e $getkey ~/python $destination 
-         # rsync --info=progress2 -aA --delete -e $getkey ~/scripts $destination 
-         # rsync --info=progress2 -aA --delete -e $getkey ~/stuff $destination 
-         # rsync --info=progress2 -aA --delete -e $getkey ~/programs $destination 
-         # rsync --info=progress2 -aA --delete -e $getkey ~/linux-comands.txt $destination 
-        
+         # rsync --info=progress2 -aA --delete -e $getkey ~/Nextcloud $destination
+         # rsync --info=progress2 -aA --delete -e $getkey ~/python $destination
+         # rsync --info=progress2 -aA --delete -e $getkey ~/scripts $destination
+         # rsync --info=progress2 -aA --delete -e $getkey ~/stuff $destination
+         # rsync --info=progress2 -aA --delete -e $getkey ~/programs $destination
+         # rsync --info=progress2 -aA --delete -e $getkey ~/linux-comands.txt $destination
+
          # -e started conpyging private key Dont use anymore
 
         ;;
-        
+
     *)
         echo "No option selected -s (sync) or -o (old)"
-        ;;  
+        ;;
  esac
 
 
