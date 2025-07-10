@@ -1,0 +1,11 @@
+# Auto mount script for galaxy phone
+#/etc/udev/rules.d/99-jmtpfs.rules
+
+#Bus 001 Device 007: ID 04e8:6860 Samsung Electronics Co., Ltd Galaxy series, misc. (MTP mode)
+
+# Rule for mounting on connect
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="6860", RUN+="/usr/local/bin/mount_phone.sh"
+
+# Rule for unmounting on disconnect
+ACTION=="remove", SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="6860", RUN+="/usr/local/bin/unmount_phone.sh"
+
