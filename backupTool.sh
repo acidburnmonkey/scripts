@@ -17,7 +17,7 @@ case $1 in
 
     -s)
         rsync --info=progress2 -aA --delete  --exclude={'Cemu','iso','video projects'} /media/Toxic $destination2
-        rsync --info=progress2 -aA --delete  --exclude={'.*','Desktop','Downloads','Documents','boxshare','repos','tor','40','test*','ServerBackups'} ~/ $destination
+        rsync --info=progress2 -aA --delete  --exclude={'.*','Desktop','Downloads','Documents','boxshare','repos','tor','test*','ServerBackups','go'} ~/ $destination
 
          # -e started conpyging private key Dont use anymore
          ;;

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 5 
+sleep 5
 pkill openrgb
 
 eval $(ssh-agent) > /dev/null 2>&1
@@ -10,5 +10,3 @@ eval $(ssh-agent) > /dev/null 2>&1
 
 ##poltit
 # exec nohup /usr/libexec/polkit-gnome-authentication-agent-1 &
-
-
