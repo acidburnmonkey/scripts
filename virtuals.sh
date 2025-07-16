@@ -7,9 +7,7 @@ venv_base="$HOME/virtual/Envs"
 # Projects map
 declare -A projects
 projects=(
-  ["currentProject"]="$HOME/java_sc/current"
-  ["sideQuest"]="$HOME/java_sc/side"
-  ["blogSite"]="$HOME/java_sc/blog"
+  ["pajeet todo"]="$HOME/java_sc/todoApp/"
 )
 
 # --- Build Selection List ---
@@ -41,9 +39,9 @@ name="${selected#*: }"
 #open webdeb
 if [[ $type == "project" ]]; then
   path="${projects[$name]}"
+  chromium-browser "http://localhost:5173/" > /dev/null 2>&1 & disown
+  firefox -p 'devfox'  > /dev/null 2>&1 & disown
   tmux new -s "$name" zsh -c "cd '$path'; exec zsh"
-  chromium-browser "http://localhost:5173/" & disown
-  # firefox "$path" & disown
 
 #python env selections
 elif [[ $type == "venv" ]]; then
