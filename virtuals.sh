@@ -5,6 +5,7 @@
 # Python projects
 declare -A uvprojects
 uvprojects=(
+  ["django"]="$HOME/python/djangoTutorial/"
 )
 
 # Regular projects
@@ -48,8 +49,8 @@ case "$type" in
   uvproject)
 
     cd "${uvprojects[$name]}" || exit
-    venv_path="$venv_base/$name"
-    tmux new -s "$name" zsh -c "source '$venv_path/bin/activate'; exec zsh"
+    venv_path="${uvprojects[$name]}"
+    tmux new -s "$name" zsh -c "source '$venv_path/.venv/bin/activate'; exec zsh"
 
     ;;
   *)
@@ -60,11 +61,11 @@ esac
 
 
 #open webdeb
-if [[ $type == "project" ]]; then
-  path="${projects[$name]}"
-  chromium-browser "http://localhost:5173/" > /dev/null 2>&1 & disown
-  firefox -p 'devfox'  > /dev/null 2>&1 & disown
-  tmux new -s "$name" zsh -c "cd '$path'; exec zsh"
+# if [[ $type == "project" ]]; then
+#   path="${projects[$name]}"
+#   chromium-browser "http://localhost:5173/" > /dev/null 2>&1 & disown
+#   firefox -p 'devfox'  > /dev/null 2>&1 & disown
+#   tmux new -s "$name" zsh -c "cd '$path'; exec zsh"
 
 
 
