@@ -1,40 +1,63 @@
 #!/usr/bin/env bash
 
 # --- Configuration ---
-# Virtualenv base
-venv_base="$HOME/virtual/Envs"
 
-# Projects map
+# Python projects
+declare -A uvprojects
+uvprojects=(
+)
+
+# Regular projects
 declare -A projects
 projects=(
   ["pajeet todo"]="$HOME/java_sc/todoApp/"
 )
 
-# --- Build Selection List ---
+# --- Build selection list ---
 choices=()
 
-# Add projects
 for name in "${!projects[@]}"; do
-  choices+=("project: $name")
+  choices+=("project:$name")
 done
 
-# Add virtualenvs
-for v in "$venv_base"/*; do
-  [[ -d $v ]] && choices+=("venv: $(basename "$v")")
+for name in "${!uvprojects[@]}"; do
+  choices+=("uvproject:$name")
 done
 
 # --- User selection via fzf ---
-selected=$(printf "%s\n" "${choices[@]}" | fzf --prompt="Launch: ")
-
+selected=$(printf "%s\n" "${choices[@]}" | fzf --prompt="Launch: ") || exit 1
 if [[ -z $selected ]]; then
   echo "Nothing selected."
   exit 0
 fi
 
+# --- Parse selection ---
 type="${selected%%:*}"
-name="${selected#*: }"
+name="${selected#*:}"
 
-# --- Handle Selection ---
+case "$type" in
+  project)
+
+    cd "${projects[$name]}" || exit
+    path="${projects[$name]}"
+    chromium-browser "http://localhost:5173/" > /dev/null 2>&1 & disown
+    firefox -p 'devfox'  > /dev/null 2>&1 & disown
+    tmux new -s "$name" zsh -c "cd '$path'; exec zsh"
+
+    ;;
+  uvproject)
+
+    cd "${uvprojects[$name]}" || exit
+    venv_path="$venv_base/$name"
+    tmux new -s "$name" zsh -c "source '$venv_path/bin/activate'; exec zsh"
+
+    ;;
+  *)
+    echo "Invalid selection"
+    exit 1
+    ;;
+esac
+
 
 #open webdeb
 if [[ $type == "project" ]]; then
@@ -43,12 +66,6 @@ if [[ $type == "project" ]]; then
   firefox -p 'devfox'  > /dev/null 2>&1 & disown
   tmux new -s "$name" zsh -c "cd '$path'; exec zsh"
 
-#python env selections
-elif [[ $type == "venv" ]]; then
-  venv_path="$venv_base/$name"
-  tmux new -s "$name" zsh -c "source '$venv_path/bin/activate'; exec zsh"
 
-else
-  echo "Invalid selection."
-fi
+
 
