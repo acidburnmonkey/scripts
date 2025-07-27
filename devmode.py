@@ -4,7 +4,7 @@ from pyfzf import FzfPrompt
 import pathlib
 import subprocess
 import os
-import shlex
+import time
 
 
 def main():
@@ -13,7 +13,10 @@ def main():
     choices = {}
 
     # Python projects
-    python_projects = {"django": f"{home}/python/djangoTutorial/"}
+    python_projects = {
+        "django": f"{home}/python/djangoTutorial/",
+        "musicController": f'{home}/python/musicController',
+    }
 
     for key in python_projects.keys():
         if "python" not in choices:
@@ -30,14 +33,12 @@ def main():
 
         choices["web"].append(key)
 
-
     # Flatten all values into one list or is [[]]
     all_choices = [item for sublist in choices.values() for item in sublist]
 
-    selected = fzf.prompt(all_choices,'--prompt="Launch:"')
+    selected = fzf.prompt(all_choices, '--prompt="Launch:"')
     selected = selected[0]
     print("selected:", selected)
-
 
     if not selected:
         print('Nothing selected')
@@ -53,18 +54,27 @@ def main():
 
         os.chdir(project_path)
 
-        inner_cmd = " tmux new-window && echo test&& exec zsh"
+        call_esac = esac()
+        inner_cmd = f" tmux new-window && exec zsh"
 
-        # subprocess.run(["tmux", "new", "-s", selected])
+        tmux_cmd = ["tmux", "new", '-d', "-s", selected, "zsh", "-c", inner_cmd]
 
-        tmux_cmd = [
-            "tmux", "new", "-s", selected,
-            "zsh", "-c", inner_cmd
-        ]
+        subprocess.run(tmux_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-        # Launch interactively to see errors (for now)
-        subprocess.run(tmux_cmd)
+        if call_esac:
+            other_commands = f"tmux send-keys -t {selected} 'sh ./esac.sh' C-m"
+            subprocess.run(
+                other_commands,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                shell=True,
+            )
 
+        subprocess.run(
+            ['tmux', 'attach', '-t', selected],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
 
     # react
     elif selected in react_projects.keys():
@@ -72,18 +82,35 @@ def main():
 
         project_path = react_projects[selected]
 
+        subprocess.Popen(
+            [
+                "chromium-browser",
+                "--profile-directory='Default'",
+                "http://localhost:5173/",
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            stdin=subprocess.DEVNULL,
+            start_new_session=True,
+        )
 
-        subprocess.Popen(["chromium-browser", "http://localhost:5173/"],
-                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                         stdin=subprocess.DEVNULL, start_new_session=True)
-
-        subprocess.Popen(["firefox", "-p", "devfox"],
-                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                     stdin=subprocess.DEVNULL, start_new_session=True)
+        subprocess.Popen(
+            ["firefox", "-p", "devfox"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            stdin=subprocess.DEVNULL,
+            start_new_session=True,
+        )
 
         os.chdir(project_path)
         subprocess.run(["tmux", "new", "-s", selected])
 
+
+def esac():
+    if 'esac.sh' in os.listdir():
+        return True
+    else:
+        return False
 
 
 if __name__ == "__main__":
