@@ -5,6 +5,7 @@ pkill openrgb
 
 eval $(ssh-agent) > /dev/null 2>&1
 
+rm $HOME/test.*
 #Scale xwayland up
 # echo "Xft.dpi: 192" | xrdb -merge
 

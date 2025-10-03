@@ -7,7 +7,6 @@ list=(
     "$HOME/.p10k.zsh"         # powerlevel10k config
     "$HOME/.vimrc"            # vim config
     "$HOME/.config/kitty"     # kitty terminal config
-    "$HOME/.config/neofetch"  # neofetch config
     "$HOME/.config/nvim"      # Neovim config
     "$HOME/.config/mpv/"      # mpv config
     "$HOME/.config/hypr/"     # Hyprland config
@@ -21,6 +20,8 @@ list=(
     "$HOME/.config/tmux/"    #tmux
     "$HOME/.config/sublime-text/" #sublime-text
     "$HOME/.config/wezterm/" # wezterm
+    "$HOME/.config/ruff/" # ruff
+
 )
 
 case "$1" in

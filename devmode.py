@@ -16,6 +16,9 @@ def main():
     python_projects = {
         "django": f"{home}/python/djangoTutorial/",
         "musicController": f'{home}/python/musicController',
+        "mySite": f'{home}/repos/mysite/',
+        "Dashboard": f'{home}/python/dashboard',
+
     }
 
     for key in python_projects.keys():
@@ -37,12 +40,14 @@ def main():
     all_choices = [item for sublist in choices.values() for item in sublist]
 
     selected = fzf.prompt(all_choices, '--prompt="Launch:"')
-    selected = selected[0]
-    print("selected:", selected)
 
     if not selected:
         print('Nothing selected')
         exit(0)
+
+    selected = selected[0]
+    print("selected:", selected)
+
 
     # Handle selection
 
