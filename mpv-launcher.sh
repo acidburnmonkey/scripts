@@ -1,13 +1,32 @@
 #!/bin/bash
 
-if pgrep mpv > /dev/null && [ -n "$1" ]; then
-    pkill mpv
-    mpv "$1"  
+SOCKET="/tmp/mpv-socket"
 
-elif [ -n "$1" ] ; then # Checks if the first argument is non-empty
-    mpv "$1"  
+# Function to start mpv with IPC
+start_mpv() {
+    mpv --input-ipc-server="$SOCKET" "$@" &
+    sleep 0.5
+}
 
-elif [ -z "$1" ]; then
-    mpv --force-window --idle
+if [ -S "$SOCKET" ] && ! pgrep -x mpv > /dev/null; then
+    rm -f "$SOCKET"
 fi
 
+if [ -n "$1" ]; then
+    if pgrep -x mpv > /dev/null && [ -S "$SOCKET" ]; then
+        if echo "loadfile \"$(realpath "$1")\" replace" | socat - "$SOCKET" 2>/dev/null; then
+            exit 0
+        fi
+    fi
+
+    if pgrep -x mpv > /dev/null; then
+        pkill -x mpv
+        sleep 0.5
+        rm -f "$SOCKET"
+    fi
+    start_mpv "$1"
+else
+    if ! pgrep -x mpv > /dev/null; then
+        start_mpv --force-window --idle
+    fi
+fi
