@@ -41,6 +41,7 @@ case "$1" in
 
         cp -r -u -v  "$HOME/.config/hypr/" "$dotfiles/Laptop-configs/"
         cp -r -u -v  "$HOME/.config/waybar/" "$dotfiles/Laptop-configs/"
+        cp -r -u -v  "$HOME/.config/hypr/" "$dotfiles/Laptop-configs/"
 
     ;;
 
