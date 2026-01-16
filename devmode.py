@@ -115,6 +115,10 @@ def main():
         subprocess.run(["tmux", "new", "-s", selected])
 
     elif selected in other.keys():
+<<<<<<< HEAD
+=======
+        print("react")
+>>>>>>> b458d8f4ed7f846dffdb76ba3e77d328a864e8e1
 
         project_path = other[selected]
 
