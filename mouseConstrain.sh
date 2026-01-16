@@ -10,10 +10,10 @@ fi
 
 if [[ ${booleanvalue} == "true" ]]; then
     # Mouse can reach DP-5 (normal position)
-    hyprctl keyword monitor DP-5,3840x2160@60,-1920x-950,2
+    hyprctl keyword monitor DP-2,3840x2160@60,-1920x-950,2
     echo "false" > ${state}
 else
     # Mouse blocked - move DP-5 very far away
-    hyprctl keyword monitor DP-5,3840x2160@60,50000x50000,2
+    hyprctl keyword monitor DP-2,3840x2160@60,50000x50000,2
     echo "true" > ${state}
 fi
