@@ -4,22 +4,26 @@ from pyfzf import FzfPrompt
 import pathlib
 import subprocess
 import os
-import time
+
+
+home = pathlib.Path.home()
+
+# Python projects
+python_projects = {
+    "mySite": f'{home}/repos/mysite/',
+    "Dashboard": f'{home}/python/Dashboard',
+}
+
+# other projects
+other = {"gobook": f'{home}/golang/book/ch1/'}
+
+# React projects
+react_projects = {}
 
 
 def main():
     fzf = FzfPrompt()
-    home = pathlib.Path.home()
     choices = {}
-
-    # Python projects
-    python_projects = {
-        "django": f"{home}/python/djangoTutorial/",
-        "musicController": f'{home}/python/musicController',
-        "mySite": f'{home}/repos/mysite/',
-        "Dashboard": f'{home}/python/dashboard',
-
-    }
 
     for key in python_projects.keys():
         if "python" not in choices:
@@ -27,8 +31,11 @@ def main():
 
         choices["python"].append(key)
 
-    # React projects
-    react_projects = {"pajeet todo": f"{home}/java_sc/todoApp/"}
+    for key in other.keys():
+        if "go" not in choices:
+            choices["go"] = []
+
+        choices["go"].append(key)
 
     for key in react_projects.keys():
         if "web" not in choices:
@@ -48,7 +55,6 @@ def main():
     selected = selected[0]
     print("selected:", selected)
 
-
     # Handle selection
 
     # UV
@@ -60,7 +66,7 @@ def main():
         os.chdir(project_path)
 
         call_esac = esac()
-        inner_cmd = f" tmux new-window && exec zsh"
+        inner_cmd = "tmux new-window && exec zsh"
 
         tmux_cmd = ["tmux", "new", '-d', "-s", selected, "zsh", "-c", inner_cmd]
 
@@ -110,13 +116,20 @@ def main():
         os.chdir(project_path)
         subprocess.run(["tmux", "new", "-s", selected])
 
+    elif selected in other.keys():
+        print("react")
+
+        project_path = other[selected]
+
+        os.chdir(project_path)
+        subprocess.run(["tmux", "new", "-s", selected])
+
 
 def esac():
     if 'esac.sh' in os.listdir():
         return True
     else:
         return False
-
 
 if __name__ == "__main__":
     main()
