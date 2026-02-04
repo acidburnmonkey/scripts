@@ -11,33 +11,36 @@ def clean(og_names):
     for n in og_names:
         file_name, extension = os.path.splitext(n)
         final_format=''
-        
+
         if "(" in  str(file_name):
             start_of_segment=(file_name.index('('))
-            
-            formatted= file_name[0:start_of_segment]
-            final_format=(formatted + extension) 
-            os.rename(n, final_format)     
 
-        elif "[" in  str(file_name): 
+            formatted= file_name[0:start_of_segment]
+            final_format=(formatted + extension)
+            os.rename(n, final_format)
+
+        elif "[" in  str(file_name):
             start_of_segment=(file_name.index('['))
 
             formatted= file_name[0:start_of_segment]
-            final_format=(formatted + extension) 
-            os.rename(n, final_format)     
+            final_format=(formatted + extension)
+            os.rename(n, final_format)
 
 
-        elif "{" in  str(file_name): 
+        elif "{" in  str(file_name):
             start_of_segment=(file_name.index('{'))
 
             formatted= file_name[0:start_of_segment]
-            final_format=(formatted + extension) 
-            os.rename(n, final_format)     
+            final_format=(formatted + extension)
+            os.rename(n, final_format)
 
     print("Working on" , os.getcwd())
     print("All Done")
     return
 
-for dirpath,subdirs,files in os.walk('/home/mahalo/Downloads/Sabaton - 2022 - The War to End All Wars (24bit-48kHz)/'):
-    os.chdir(dirpath)
-    clean(files)
+
+if __name__ =='__main__':
+
+    for dirpath,subdirs,files in os.walk('/mnt/Toxic/music'):
+        os.chdir(dirpath)
+        clean(files)

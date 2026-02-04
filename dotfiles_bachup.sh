@@ -1,11 +1,9 @@
 #!/bin/bash
 
-dotfiles="$HOME/repos/dotfiles/"
+dotfiles="$HOME/repos/dotfiles"
+dotfilesDesktop="$HOME/repos/dotfiles/desktop"
 
-list=(
-    "$HOME/.zshrc"                  # zsh config
-    "$HOME/.p10k.zsh"               # powerlevel10k config
-    "$HOME/.vimrc"                  # vim config
+desktopList=(
     "$HOME/.config/kitty"           # kitty terminal config
     "$HOME/.config/nvim"            # Neovim config
     "$HOME/.config/mpv/"            # mpv config
@@ -17,22 +15,60 @@ list=(
     "$HOME/.config/rofi/"           # Rofi config
     "$HOME/.config/fastfetch/"      # fastfetch
     "$HOME/.config/tmux/"           #tmux
-    "$HOME/.config/sublime-text/"   #sublime-text
     "$HOME/.config/wezterm/"        # wezterm
     "$HOME/.config/ruff/"           # ruff
-    "$HOME/.config/mimeapps.list"   # mimes
     "$HOME/.config/environment.d/"  # Auth
-    "$HOME/.XCompose"               # Greek Symbols
 )
+
+homeList=(
+    "$HOME/.zshrc"                  # zsh config
+    "$HOME/.p10k.zsh"               # powerlevel10k config
+    "$HOME/.vimrc"                  # vim config
+    "$HOME/.XCompose"               # Greek Symbols
+    "$HOME/.config/mimeapps.list"   # mimes
+    )
 
 case "$1" in
 
     --desktop)
-        # directories on ~/.config
-        for source in "${list[@]}"; do
+        # directories on $Home
+        for source in "${homeList[@]}"; do
             cp -r -u -v $source $dotfiles
         done
 
+        echo "=== Syncing .config configurations ==="
+        copied=false
+
+        for source in "${desktopList[@]}"; do
+            if [ -e "$source" ]; then
+                # Get the basename for the destination
+                basename=$(basename "$source")
+                dest="$dotfilesDesktop/$basename"
+
+                # Create parent directory if needed
+                mkdir -p "$dotfilesDesktop/"
+
+                if [ -d "$source" ]; then
+                    output=$(rsync -avu --delete "$source/" "$dest/" 2>&1)
+                else
+                    output=$(rsync -avu "$source" "$dotfilesDesktop/" 2>&1)
+                fi
+
+                if [ -n "$output" ]; then
+                    echo "Synced: $source -> $dest"
+                    echo "$output" | grep -v "^sending incremental file list$" | grep -v "^$"
+                    copied=true
+                fi
+            else
+                echo "Warning: $source does not exist, skipping..."
+            fi
+        done
+
+        if [ "$copied" = false ]; then
+            echo "No changes detected - all files are up to date"
+        fi
+
+        echo "=== Desktop sync complete ==="
     ;;
 
     --laptop)
