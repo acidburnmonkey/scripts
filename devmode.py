@@ -15,7 +15,7 @@ python_projects = {
 }
 
 # other projects
-other = {"gobook": f'{home}/golang/book/ch1/'}
+other = {"gobook": f'{home}/golang/book/ch1/', 'Stims': f'{home}/AndroidStudioProjects/stims/'}
 
 
 def main():
@@ -33,8 +33,6 @@ def main():
             choices["go"] = []
 
         choices["go"].append(key)
-
-        choices["web"].append(key)
 
     # Flatten all values into one list or is [[]]
     all_choices = [item for sublist in choices.values() for item in sublist]
