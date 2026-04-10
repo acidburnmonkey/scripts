@@ -76,7 +76,20 @@ for pkg in \
     com.tripledot.solitaire \
     com.tripledot.woodoku \
     com.vitastudio.mahjong \
-    com.yelp.android
+    com.yelp.android \
+    com.sec.android.gallery3d \
+    com.samsung.android.bixby.ondevice.enus \
+    com.samsung.android.bixbyvision.framework \
+    com.samsung.android.scloud \
+    com.sec.android.mimage.avatarstickers \
+    com.samsung.android.app.camera.sticker.facearavatar.preload \
+    com.samsung.android.motionphoto.app \
+    com.samsung.android.photoremasterservice \
+    com.samsung.android.mdx \
+    com.samsung.android.visionintelligence \
+    com.samsung.android.samsungpassautofill \
+    com.sec.android.mimage.photoretouching \
+    com.samsung.accessory.budsunitemgr
 
 
 do

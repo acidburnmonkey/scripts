@@ -5,6 +5,21 @@ destination=mal0@192.168.1.209:/mnt/2tb/backup
 getkey="ssh -i .ssh/localserv"
 destination2=mal0@192.168.1.209:/mnt/2tb/windows_backup
 
+excludes=(
+  --exclude='.*'
+  --exclude='Desktop'
+  --exclude='Downloads'
+  --exclude='Documents'
+  --exclude='boxshare'
+  --exclude='repos'
+  --exclude='tor*'
+  --exclude='test*'
+  --exclude='ServerBackups'
+  --exclude='go'
+  --exclude='Android'
+  --exclude='AndroidStudioProjects'
+  --exclude='Games'
+)
 
 case $1 in
     --import)
@@ -17,7 +32,7 @@ case $1 in
 
     -s)
         rsync --info=progress2 -aA --delete-excluded  --exclude={'Cemu','iso','video projects'} /mnt/Toxic $destination2
-        rsync --info=progress2 -aA --delete-excluded  --exclude={'.*','Desktop','Downloads','Documents','boxshare','repos','tor','test*','ServerBackups','go'} ~/ $destination
+        rsync --info=progress2 -aA --delete-excluded  "${excludes[@]}" ~/ $destination
 
          # -e started conpyging private key Dont use anymore
          ;;

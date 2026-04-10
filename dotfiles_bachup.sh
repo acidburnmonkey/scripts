@@ -18,6 +18,7 @@ desktopList=(
     "$HOME/.config/wezterm/"        # wezterm
     "$HOME/.config/ruff/"           # ruff
     "$HOME/.config/environment.d/"  # Auth
+    "$HOME/.config/quickshell/"     # quickshell
 )
 
 homeList=(
