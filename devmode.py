@@ -15,7 +15,11 @@ python_projects = {
 }
 
 # other projects
-other = {"gobook": f'{home}/golang/book/ch1/', 'Stims': f'{home}/AndroidStudioProjects/stims/'}
+other = {
+    "gobook": f'{home}/golang/book/ch1/',
+    'Stims': f'{home}/AndroidStudioProjects/stims/',
+    'Datastructures': f'{home}/golang/learning/datastructures/',
+}
 
 
 def main():
