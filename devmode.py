@@ -16,9 +16,9 @@ python_projects = {
 
 # other projects
 other = {
-    "gobook": f'{home}/golang/book/ch1/',
+    "gobook": f'{home}/golang/book/',
     'Stims': f'{home}/AndroidStudioProjects/stims/',
-    'Datastructures': f'{home}/golang/learning/datastructures/',
+    'Datastructures': f'{home}/golang/datastructures/',
 }
 
 
